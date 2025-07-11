@@ -1,375 +1,924 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Big Tech Interview Prep with Yernar</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --bg-dark: #0f172a;
-      --bg-card: #1e293b;
-      --text-primary: #f8fafc;
-      --text-secondary: #94a3b8;
-      --gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ikadus Team - Search is Dead. Ask Instead.</title>
+    <meta name="description" content="Transform your institutional knowledge into AI-powered chat interfaces. Reduce queries by 70% with instant, accurate responses." />
+    <meta name="author" content="Ikadus Team" />
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg-dark);
-      color: var(--text-primary);
-      line-height: 1.6;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    header {
-      background: var(--bg-card);
-      position: relative;
-      overflow: hidden;
-      padding: 6rem 0 4rem;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 100%;
-      background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent 70%);
-      pointer-events: none;
-    }
-
-    .profile-section {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 4rem;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .profile-image-container {
-      position: relative;
-    }
-
-    .profile-image {
-      width: 300px;
-      height: 300px;
-      border-radius: 20px;
-      object-fit: cover;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-      transform: rotate(-2deg);
-      transition: transform 0.3s ease;
-    }
-
-    .profile-image:hover {
-      transform: rotate(0deg);
-    }
-
-    .profile-image::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 20px;
-      border: 2px solid var(--primary);
-      opacity: 0.5;
-    }
-
-    .header-content h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 1.5rem;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .header-content p {
-      font-size: 1.25rem;
-      color: var(--text-secondary);
-      max-width: 600px;
-    }
-
-    .section {
-      padding: 6rem 0;
-    }
-
-    .section-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 3rem;
-      text-align: center;
-    }
-
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .card {
-      background: var(--bg-card);
-      padding: 2.5rem;
-      border-radius: 20px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    }
-
-    .card h2 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      color: var(--text-primary);
-    }
-
-    .free-consultation {
-      background: var(--gradient);
-      color: white;
-      text-align: center;
-      padding: 3rem;
-      border-radius: 20px;
-      margin-bottom: 4rem;
-    }
-
-    .free-consultation h2 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .free-consultation p {
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      color: white;
-    }
-
-    .free-consultation ul {
-      margin-bottom: 2rem;
-    }
-
-    .free-consultation li {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: white;
-      margin-bottom: 1rem;
-    }
-
-    .free-consultation li:before {
-      color: white;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 1rem 2rem;
-      background: var(--gradient);
-      color: white;
-      text-decoration: none;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 1.2rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 2px solid white;
-      color: white;
-      font-size: 1.2rem;
-      font-weight: 600;
-    }
-
-    .btn-outline:hover {
-      background: white;
-      color: var(--primary);
-    }
-
-    ul {
-      list-style: none;
-    }
-
-    li {
-      margin-bottom: 1rem;
-      padding-left: 1.5rem;
-      position: relative;
-      color: var(--text-secondary);
-    }
-
-    li:before {
-      content: "→";
-      position: absolute;
-      left: 0;
-      color: var(--primary);
-    }
-
-    .contact-card {
-      text-align: center;
-    }
-
-    .contact-card a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    .contact-card a:hover {
-      color: var(--primary-dark);
-    }
-
-    .contact-card .btn {
-      color: white;
-      font-weight: 700;
-    }
-
-    .contact-card .btn:hover {
-      color: white;
-    }
-
-    footer {
-      background: var(--bg-card);
-      padding: 2rem 0;
-      text-align: center;
-      color: var(--text-secondary);
-    }
-
-    @media (max-width: 768px) {
-      .profile-section {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 2rem;
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Ikadus Team - Search is Dead. Ask Instead." />
+    <meta property="og:description" content="Transform your institutional knowledge into AI-powered chat interfaces" />
+    <meta property="og:type" content="website" />
+    
+    <style>
+      :root {
+        --primary: #6e48aa;
+        --secondary: #37beb0;
+        --bg-gradient: linear-gradient(180deg, #fbfbfd 0%, #f5f5f7 100%);
+        --headline-font: 'SF Pro Display', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        --body-font: 'Inter', system-ui, sans-serif;
       }
-
-      .profile-image {
-        width: 250px;
-        height: 250px;
+      
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      
+      html, body {
+        height: 100%;
+        background: var(--bg-gradient);
+        font-family: var(--body-font);
+        color: #1d1d1f;
+        letter-spacing: -0.022em;
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+      
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .hero-content {
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+      
+      .hero-badge {
+        margin-bottom: 2rem;
+      }
+      
+      .badge-text {
+        background: var(--primary);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        display: inline-block;
+        box-shadow: 0 4px 16px rgba(110,72,170,0.2);
+      }
+      
+      .hero-headline {
+        font-family: var(--headline-font);
+        font-size: 4rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.003em;
+        line-height: 1.1;
+      }
+      
+      .hero-subhead {
+        font-size: 1.5rem;
+        color: #86868b;
+        margin-bottom: 3rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.4;
+      }
+      
+      .hero-animation {
+        position: relative;
+        width: 400px;
+        height: 300px;
         margin: 0 auto;
       }
-
-      .header-content h1 {
+      
+      .chat-bubble {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 20px;
+        padding: 1.5rem;
+        box-shadow: 0 8px 32px rgba(110,72,170,0.2);
+        animation: float 3s ease-in-out infinite;
+      }
+      
+      .bubble-content {
+        color: white;
+        font-weight: 500;
+      }
+      
+      .floating-emoji {
+        position: absolute;
         font-size: 2.5rem;
+        animation: float 4s ease-in-out infinite;
       }
-
+      
+      .university { top: 5%; left: 5%; animation-delay: 0s; }
+      .law { top: 15%; right: 10%; animation-delay: 0.5s; }
+      .healthcare { bottom: 25%; left: 8%; animation-delay: 1s; }
+      .corporate { bottom: 15%; right: 8%; animation-delay: 1.5s; }
+      .finance { top: 45%; left: 15%; animation-delay: 2s; }
+      .realestate { bottom: 5%; right: 20%; animation-delay: 2.5s; }
+      
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
+      
+      /* Case Study Section */
+      .case-study {
+        padding: 6rem 0;
+        background: rgba(255,255,255,0.6);
+        backdrop-filter: blur(20px);
+      }
+      
       .section-title {
-        font-size: 2rem;
+        font-family: var(--headline-font);
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        text-align: center;
+        margin-bottom: 3rem;
+        letter-spacing: -0.003em;
       }
-    }
-  </style>
-</head>
-<body>
+      
+      .demo-comparisons {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      
+      .comparison-item {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+        margin-bottom: 2rem;
+        overflow: hidden;
+        border: 1px solid rgba(0,0,0,0.04);
+      }
+      
+      .comparison-item.active {
+        box-shadow: 0 8px 48px rgba(0,0,0,0.12);
+      }
+      
+      .comparison-header {
+        width: 100%;
+        background: none;
+        border: none;
+        padding: 2rem;
+        text-align: left;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: var(--headline-font);
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        transition: background 0.3s ease;
+      }
+      
+      .comparison-header:hover {
+        background: rgba(110,72,170,0.05);
+      }
+      
+      .toggle-icon {
+        font-size: 1.5rem;
+        color: var(--primary);
+        font-weight: bold;
+      }
+      
+      .comparison-content {
+        padding: 0 2rem 2rem 2rem;
+        display: none;
+      }
+      
+      .comparison-item.active .comparison-content {
+        display: block;
+      }
+      
+      .comparison-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      .demo-side h4 {
+        font-family: var(--headline-font);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #1d1d1f;
+      }
+      
+      .demo-placeholder {
+        background: #f5f5f7;
+        border-radius: 12px;
+        padding: 1.5rem;
+        border: 1px solid rgba(0,0,0,0.04);
+      }
+      
+      .search-demo, .chat-demo, .email-demo, .catalog-demo {
+        font-family: var(--body-font);
+      }
+      
+      .search-bar {
+        background: white;
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        border: 1px solid rgba(0,0,0,0.1);
+        font-size: 0.9rem;
+      }
+      
+      .search-results {
+        margin-bottom: 1rem;
+      }
+      
+      .result-item {
+        background: white;
+        padding: 0.5rem 0.8rem;
+        margin-bottom: 0.5rem;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        border: 1px solid rgba(0,0,0,0.05);
+      }
+      
+      .frustration-indicator, .confusion-indicator {
+        color: #86868b;
+        font-size: 0.9rem;
+        font-style: italic;
+      }
+      
+      .chat-message {
+        margin-bottom: 1rem;
+        padding: 0.8rem 1rem;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+      
+      .chat-message.user {
+        background: var(--primary);
+        color: white;
+        margin-left: 2rem;
+      }
+      
+      .chat-message.ai {
+        background: #f0f0f0;
+        color: #1d1d1f;
+        margin-right: 2rem;
+      }
+      
+      .chat-message.ai a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 500;
+      }
+      
+      .email-header {
+        background: var(--primary);
+        color: white;
+        padding: 0.5rem 0.8rem;
+        border-radius: 6px;
+        margin-bottom: 0.8rem;
+        font-size: 0.85rem;
+      }
+      
+      .email-content {
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+      
+      .waiting {
+        color: #86868b;
+        font-style: italic;
+        font-size: 0.8rem;
+      }
+      
+      .catalog-nav {
+        background: white;
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        margin-bottom: 0.8rem;
+        font-size: 0.85rem;
+        border: 1px solid rgba(0,0,0,0.1);
+      }
+      
+      .stats-overlay {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      
+      .stat {
+        background: var(--secondary);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        box-shadow: 0 2px 8px rgba(55,190,176,0.2);
+      }
+      
+      /* Founders Section */
+      .founders {
+        padding: 6rem 0;
+      }
+      
+      .founders-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .founder-card {
+        text-align: center;
+        background: rgba(255,255,255,0.8);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 2.5rem 2rem;
+        box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+        border: 1px solid rgba(0,0,0,0.04);
+        transition: transform 0.3s ease;
+      }
+      
+      .founder-card:hover {
+        transform: translateY(-5px);
+      }
+      
+      .founder-photo {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 1.5rem auto;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        font-size: 1.5rem;
+      }
+      
+      .neural-overlay {
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        border: 2px solid var(--secondary);
+        border-radius: 50%;
+        opacity: 0.3;
+        animation: pulse 2s infinite;
+      }
+      
+      @keyframes pulse {
+        0% { transform: scale(1); opacity: 0.3; }
+        50% { transform: scale(1.1); opacity: 0.1; }
+        100% { transform: scale(1); opacity: 0.3; }
+      }
+      
+      .founder-card h3 {
+        font-family: var(--headline-font);
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+      }
+      
+      .founder-title {
+        font-size: 1rem;
+        color: var(--secondary);
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+      
+      .founder-credentials {
+        font-size: 0.95rem;
+        color: #86868b;
+        line-height: 1.5;
+      }
+      
+      /* How It Works Section */
+      .how-it-works {
+        padding: 6rem 0;
+        background: rgba(255,255,255,0.6);
+        backdrop-filter: blur(20px);
+      }
+      
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2.5rem;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      
+      .step-card {
+        background: white;
+        border-radius: 20px;
+        padding: 2.5rem 2rem;
+        text-align: center;
+        box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+        border: 1px solid rgba(0,0,0,0.04);
+        position: relative;
+        transition: transform 0.3s ease;
+      }
+      
+      .step-card:hover {
+        transform: translateY(-8px);
+      }
+      
+      .step-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .step-number {
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+        font-family: var(--headline-font);
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        opacity: 0.3;
+      }
+      
+      .step-card h3 {
+        font-family: var(--headline-font);
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 1rem;
+      }
+      
+      .step-card p {
+        color: #86868b;
+        line-height: 1.5;
+      }
+      
+      /* CTA Section */
+      .cta {
+        padding: 6rem 0;
+      }
+      
+      .cta-content {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      
+      .cta-content h2 {
+        font-family: var(--headline-font);
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 1rem;
+        letter-spacing: -0.003em;
+      }
+      
+      .cta-content p {
+        font-size: 1.2rem;
+        color: #86868b;
+        margin-bottom: 2.5rem;
+        line-height: 1.4;
+      }
+      
+      .cta-buttons {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+      }
+      
+      .btn-primary, .btn-secondary {
+        font-family: var(--headline-font);
+        font-size: 1.1rem;
+        font-weight: 600;
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+      }
+      
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+        box-shadow: 0 4px 16px rgba(110,72,170,0.2);
+      }
+      
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(110,72,170,0.3);
+        background: #5a3d8c;
+      }
+      
+      .btn-secondary {
+        background: var(--secondary);
+        color: white;
+        box-shadow: 0 4px 16px rgba(55,190,176,0.2);
+      }
+      
+      .btn-secondary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(55,190,176,0.3);
+        background: #2fa99e;
+      }
+      
+      .contact-form {
+        background: rgba(255,255,255,0.8);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 2.5rem;
+        box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+        border: 1px solid rgba(0,0,0,0.04);
+      }
+      
+      .contact-form h3 {
+        font-family: var(--headline-font);
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 1.5rem;
+      }
+      
+      .contact-form form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .contact-form input,
+      .contact-form textarea {
+        font-family: var(--body-font);
+        font-size: 1rem;
+        padding: 1rem;
+        border-radius: 12px;
+        border: 1px solid rgba(0,0,0,0.1);
+        background: rgba(255,255,255,0.8);
+        outline: none;
+        transition: all 0.3s ease;
+      }
+      
+      .contact-form input:focus,
+      .contact-form textarea:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px rgba(110,72,170,0.1);
+      }
+      
+      .btn-form {
+        background: var(--secondary);
+        color: white;
+        font-family: var(--headline-font);
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 1rem;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 16px rgba(55,190,176,0.2);
+      }
+      
+      .btn-form:hover {
+        background: #2fa99e;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(55,190,176,0.3);
+      }
+      
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .hero-headline {
+          font-size: 2.5rem;
+        }
+        
+        .hero-subhead {
+          font-size: 1.2rem;
+        }
+        
+        .comparison-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+        
+        .founders-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .steps-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .cta-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        .container {
+          padding: 0 1rem;
+        }
+      }
+    </style>
+  </head>
 
-  <header>
-    <div class="container">
-      <div class="profile-section">
-        <div class="profile-image-container">
-          <img src="photo.jpeg" alt="Yernar Kumashev" class="profile-image">
-        </div>
-        <div class="header-content">
-          <h1>Big Tech Interview Prep</h1>
-          <p>Expert guidance from a Microsoft engineer with a Master's in Computer Science. Elevate your interview skills and land your dream job at top tech companies.</p>
-          <a href="#contact" class="btn">Get Started</a>
+  <body>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-text">Limited 2025 Deployment Slots</span>
+          </div>
+          <h1 class="hero-headline">Search is Dead.<br>Ask Instead.</h1>
+          <p class="hero-subhead">
+            The Ikadus team turns your website into an instant-knowledge assistant—trained on your data, answering in your voice.
+          </p>
+          <div class="hero-animation">
+            <div class="floating-emoji university">🏛️</div>
+            <div class="floating-emoji law">⚖️</div>
+            <div class="floating-emoji healthcare">🏥</div>
+            <div class="floating-emoji corporate">🏢</div>
+            <div class="floating-emoji finance">🏦</div>
+            <div class="floating-emoji realestate">🏠</div>
+          </div>
         </div>
       </div>
-    </div>
-  </header>
+    </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="free-consultation">
-        <h2>🎁 Free Initial Consultation</h2>
-        <p>Get started with a free consultation that includes:</p>
-        <ul>
-          <li>CV Optimization</li>
-          <li>Salary Negotiation Advice</li>
-          <li>Career Path Assessment</li>
-        </ul>
-        <a class="btn btn-outline" href="mailto:kumashev.yernar@gmail.com">Book Free Consultation</a>
-      </div>
+    <!-- Case Study Section -->
+    <section class="case-study">
+      <div class="container">
+        <h2 class="section-title">How Universities Reduced Student Queries by 70%</h2>
+        
+        <div class="demo-comparisons">
+          <!-- First Comparison - Open by default -->
+          <div class="comparison-item active">
+            <button class="comparison-header" onclick="toggleComparison(this)">
+              <h3>Registration & Enrollment Questions</h3>
+              <span class="toggle-icon">−</span>
+            </button>
+            <div class="comparison-content">
+              <div class="comparison-grid">
+                <div class="demo-side old-way">
+                  <h4>Old Search - 2+ minutes</h4>
+                  <div class="demo-placeholder">
+                    <div class="search-demo">
+                      <div class="search-bar">🔍 "transfer application deadline"</div>
+                      <div class="search-results">
+                        <div class="result-item">Academic Calendar 2025...</div>
+                        <div class="result-item">Transfer Requirements...</div>
+                        <div class="result-item">Application Process...</div>
+                        <div class="result-item">FAQ - General...</div>
+                      </div>
+                      <div class="frustration-indicator">😤 Still searching...</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="demo-side new-way">
+                  <h4>Ikadus AI - 8 seconds</h4>
+                  <div class="demo-placeholder">
+                    <div class="chat-demo">
+                      <div class="chat-message user">What's the deadline for transfer applications?</div>
+                      <div class="chat-message ai">
+                        <strong>Transfer Application Deadlines:</strong><br>
+                        • Fall 2025: June 1st<br>
+                        • Spring 2026: November 1st<br>
+                        • Summer 2026: March 15th<br><br>
+                        📄 <a href="#">Complete Transfer Guide →</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="stats-overlay">
+                <span class="stat">83% faster resolution</span>
+                <span class="stat">24/7 availability</span>
+              </div>
+            </div>
+          </div>
 
-      <h2 class="section-title">Comprehensive Interview Preparation</h2>
-      <div class="cards-grid">
-        <div class="card">
-          <h2>Course Package</h2>
-          <ul>
-            <li>Initial Mock Interview & Knowledge Gap Analysis</li>
-            <li>Customized Study Plan for All 4 Interview Rounds</li>
-            <li>Detailed Feedback on Improvement Areas</li>
-            <li>Final Mock Interview (Real Big Tech Format)</li>
-            <li>Additional Mock Interviews if Needed</li>
-            <li>Access to Exclusive Telegram Channel</li>
-          </ul>
-          <a class="btn" href="mailto:kumashev.yernar@gmail.com">Get Started</a>
+          <!-- Second Comparison -->
+          <div class="comparison-item">
+            <button class="comparison-header" onclick="toggleComparison(this)">
+              <h3>Financial Aid & Scholarships</h3>
+              <span class="toggle-icon">+</span>
+            </button>
+            <div class="comparison-content">
+              <div class="comparison-grid">
+                <div class="demo-side old-way">
+                  <h4>Traditional Support - 24-48 hours</h4>
+                  <div class="demo-placeholder">
+                    <div class="email-demo">
+                      <div class="email-header">📧 Support Ticket #12847</div>
+                      <div class="email-content">
+                        "I need help with FAFSA requirements..."<br>
+                        <span class="waiting">⏰ Waiting for response...</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="demo-side new-way">
+                  <h4>Ikadus AI - Instant</h4>
+                  <div class="demo-placeholder">
+                    <div class="chat-demo">
+                      <div class="chat-message user">What documents do I need for FAFSA?</div>
+                      <div class="chat-message ai">
+                        <strong>FAFSA Required Documents:</strong><br>
+                        • Social Security Number<br>
+                        • Driver's License<br>
+                        • 2023 Tax Returns<br>
+                        • Bank Statements<br><br>
+                        💰 <a href="#">FAFSA Checklist →</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Third Comparison -->
+          <div class="comparison-item">
+            <button class="comparison-header" onclick="toggleComparison(this)">
+              <h3>Course & Schedule Information</h3>
+              <span class="toggle-icon">+</span>
+            </button>
+            <div class="comparison-content">
+              <div class="comparison-grid">
+                <div class="demo-side old-way">
+                  <h4>Course Catalog Navigation - 5+ minutes</h4>
+                  <div class="demo-placeholder">
+                    <div class="catalog-demo">
+                      <div class="catalog-nav">
+                        Departments → Computer Science → Course Listings → Prerequisites...
+                      </div>
+                      <div class="confusion-indicator">🤔 Which courses can I take?</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="demo-side new-way">
+                  <h4>Ikadus AI - 12 seconds</h4>
+                  <div class="demo-placeholder">
+                    <div class="chat-demo">
+                      <div class="chat-message user">What CS courses can I take with calculus background?</div>
+                      <div class="chat-message ai">
+                        <strong>Available CS Courses:</strong><br>
+                        • CS 101: Intro to Programming<br>
+                        • CS 201: Data Structures<br>
+                        • CS 250: Discrete Mathematics<br><br>
+                        📚 <a href="#">View Full Prerequisites →</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
 
-        <div class="card">
-          <h2>Interview Rounds</h2>
-          <ul>
-            <li>Behavioral Interview</li>
-            <li>System Design</li>
-            <li>Object-Oriented Design</li>
-            <li>Data Structures & Algorithms</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h2>Why Choose Me?</h2>
-          <ul>
-            <li>🎓 Master's Degree in Computer Science</li>
-            <li>💼 Software Engineer at Microsoft</li>
-            <li>📈 Proven Track Record in Big Tech Interviews</li>
-            <li>🎯 Personalized Approach to Your Success</li>
-            <li>🤝 Ongoing Support Through Telegram Channel</li>
-          </ul>
+    <!-- Founders Section -->
+    <section class="founders">
+      <div class="container">
+        <h2 class="section-title">Built by AI Experts</h2>
+        <div class="founders-grid">
+          <div class="founder-card">
+            <div class="founder-photo">
+              <div class="photo-placeholder">AC</div>
+              <div class="neural-overlay"></div>
+            </div>
+            <h3>Alex Chen</h3>
+            <p class="founder-title">Co-Founder & CTO</p>
+            <p class="founder-credentials">
+              MS Computer Science (Stanford)<br>
+              Ex-Microsoft AI Engineer
+            </p>
+          </div>
+          <div class="founder-card">
+            <div class="founder-photo">
+              <div class="photo-placeholder">MW</div>
+              <div class="neural-overlay"></div>
+            </div>
+            <h3>Marko Weber</h3>
+            <p class="founder-title">Co-Founder & CEO</p>
+            <p class="founder-credentials">
+              MSc Machine Learning (TU Wien)<br>
+              Lead ML Engineer at Austrian Tech
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section" id="contact">
-    <div class="container">
-      <div class="card contact-card">
-        <h2>Let's Connect</h2>
-        <p>Ready to transform your interview skills?</p>
-        <p>Email: <a href="mailto:kumashev.yernar@gmail.com">kumashev.yernar@gmail.com</a></p>
-        <p>Join our Telegram channel for career insights and support</p>
-        <a class="btn" href="mailto:kumashev.yernar@gmail.com">Get in Touch</a>
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+      <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps-grid">
+          <div class="step-card" data-step="1">
+            <div class="step-icon">🕸️</div>
+            <div class="step-number">01</div>
+            <h3>Data Collection</h3>
+            <p>We scrape & structure your public/private data from websites, documents, and databases</p>
+          </div>
+          <div class="step-card" data-step="2">
+            <div class="step-icon">🧠</div>
+            <div class="step-number">02</div>
+            <h3>AI Training</h3>
+            <p>Train a custom AI model in your brand's voice with your specific knowledge base</p>
+          </div>
+          <div class="step-card" data-step="3">
+            <div class="step-icon">💬</div>
+            <div class="step-number">03</div>
+            <h3>Deployment</h3>
+            <p>Deploy as a chat widget or standalone portal with 24/7 instant responses</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <div class="container">
-      © 2024 Yernar Kumashev — Big Tech Interview Coaching
-    </div>
-  </footer>
+    <!-- CTA Section -->
+    <section class="cta">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Ready to Transform Your Knowledge Access?</h2>
+          <p>Join leading institutions that have revolutionized their user experience</p>
+          
+          <div class="cta-buttons">
+            <a href="mailto:contact@ikadus.ai?subject=Ikadus AI Demo Request" class="btn-primary">
+              Book a Demo →
+            </a>
+            <a href="/technical-specs.pdf" class="btn-secondary" download>
+              See Technical Specs
+            </a>
+          </div>
 
-</body>
-</html>
+          <div class="contact-form">
+            <h3>Get Custom Proposal</h3>
+            <form action="mailto:contact@ikadus.ai" method="post" enctype="text/plain">
+              <input type="text" name="institution" placeholder="Your Institution" required>
+              <input type="email" name="email" placeholder="Email" required>
+              <textarea name="challenge" placeholder="What's your biggest knowledge access challenge?" rows="4"></textarea>
+              <button type="submit" class="btn-form">Get Custom Proposal</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      function toggleComparison(button) {
+        const comparisonItem = button.closest('.comparison-item');
+        const content = comparisonItem.querySelector('.comparison-content');
+        const icon = button.querySelector('.toggle-icon');
+        
+        // Close all other comparisons
+        document.querySelectorAll('.comparison-item').forEach(item => {
+          if (item !== comparisonItem) {
+            item.classList.remove('active');
+            item.querySelector('.comparison-content').style.display = 'none';
+            item.querySelector('.toggle-icon').textContent = '+';
+          }
+        });
+        
+        // Toggle current comparison
+        if (comparisonItem.classList.contains('active')) {
+          comparisonItem.classList.remove('active');
+          content.style.display = 'none';
+          icon.textContent = '+';
+        } else {
+          comparisonItem.classList.add('active');
+          content.style.display = 'block';
+          icon.textContent = '−';
+        }
+      }
+    </script>
+  </body>
+</html> 
